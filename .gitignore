@@ -19,10 +19,9 @@
 /target/
 
 # Test modules
-*/target/
-*/allure-results/
-*/.allure/
-*/build
+/allure-results/
+/.allure/
+/build
 
 *.jar
 *.war
