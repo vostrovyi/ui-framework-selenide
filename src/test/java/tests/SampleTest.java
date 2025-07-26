@@ -14,14 +14,17 @@ public class SampleTest extends BaseTest {
     public void registerUser() {
         MainPage mainPage = new MainPage();
 
+        // Verify Home Page Is Visible
         assertThat(mainPage.verifyHomePageIsVisible()).isEqualTo("Home");
         assertThat(title()).isEqualTo("Automation Exercise");
 
         LoginPage loginPage = mainPage.clickLoginButton();
 
+        // Verify 'New User Signup!' is visible
         assertThat(loginPage.getNewUserSignupText())
                 .isEqualTo("New User Signup!");
 
+        // Verify that 'ENTER ACCOUNT INFORMATION' is visible
         assertThat(loginPage.setUserData()
                 .accountInformation()
                 .getText())

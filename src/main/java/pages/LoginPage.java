@@ -12,8 +12,10 @@ public class LoginPage extends BasePage {
     private final SelenideElement name = $("[placeholder='Name']");
     private final SelenideElement email = $("[data-qa='signup-email']");
     private final SelenideElement signUpButton = $("[data-qa='signup-button']");
-    private final SelenideElement enterAccountInformation =
-            $x("(//div[@class='login-form']//h2[@class='title text-center']/b)[1]");
+    private final SelenideElement enterAccountInformation = $x("(//div[@class='login-form']//h2[@class='title text-center']/b)[1]");
+    private final SelenideElement setUserTitle = $("#uniform-id_gender1");
+    private final SelenideElement setPassword = $("#password");
+
 
 //    /**
 //     * Get elements
@@ -41,6 +43,13 @@ public class LoginPage extends BasePage {
     }
 
     public SelenideElement accountInformation() {
+        return enterAccountInformation;
+    }
+
+    public SelenideElement fillDetails() {
+        clickElement(setUserTitle);
+        setInputValue(setPassword, RandomString.make(8));
+
         return enterAccountInformation;
     }
 }
