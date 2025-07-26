@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MainPage;
@@ -11,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SampleTest extends BaseTest {
 
     @Test
+    @Description("Register New User")
     public void registerUser() {
         MainPage mainPage = new MainPage();
 

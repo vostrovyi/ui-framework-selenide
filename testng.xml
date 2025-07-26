@@ -1,19 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="UI Framework Tests" verbose="1" parallel="methods" thread-count="2">
 
-<suite name="Test Regression PW Suite"  thread-count="1" parallel = "tests"   verbose="4">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        <listener class-name="listeners.Listener"/>
+    </listeners>
 
-
-    <test name="Sample Test">
+    <test name="Sample Tests">
         <classes>
-            <class name="tests.SampleTest" />
+            <class name="tests.SampleTest"/>
         </classes>
     </test>
-
-    <!--        <test name="Login Test">-->
-    <!--            <classes>-->
-    <!--                <class name="tests.SampleTest" />-->
-    <!--            </classes>-->
-    <!--        </test>-->
-
 </suite>
