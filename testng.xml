@@ -7,9 +7,9 @@
         <listener class-name="listeners.Listener"/>
     </listeners>
 
-    <test name="Sample Tests">
+    <test name="Login Tests">
         <classes>
-            <class name="tests.SampleTest"/>
+            <class name="tests.LoginTest"/>
         </classes>
     </test>
 </suite>
