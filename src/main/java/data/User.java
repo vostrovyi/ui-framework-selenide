@@ -20,6 +20,9 @@ public class User {
     private String zipcode;
     private String mobileNumber;
 
+    /**
+     * Constructor to generate RANDOM user
+     */
     public User() {
         this.name = RandomString.make(5);
         this.lastName = RandomString.make(8);
@@ -32,5 +35,16 @@ public class User {
         this.city = RandomString.make(8);
         this.zipcode = String.valueOf(ThreadLocalRandom.current().nextInt(10000, 100000));
         this.mobileNumber = String.valueOf(ThreadLocalRandom.current().nextLong(1_000_000_000L, 10_000_000_000L));
+    }
+
+    /**
+     * A static method for getting a Predefined User
+     */
+    public static User getPredefinedUser() {
+        User user = new User();
+        user.setName("testdsfd2");
+        user.setEmail("test@tes342424wefft.com");
+        user.setPassword("cxLszNRJ4avN@Qy");
+        return user;
     }
 }

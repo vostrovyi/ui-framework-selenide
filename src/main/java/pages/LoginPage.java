@@ -10,6 +10,7 @@ public class LoginPage extends BasePage {
 
     // --- Locators ---
     private final SelenideElement newUserSignUp = $("div.signup-form > h2");
+    private final SelenideElement loginToYourAccount = $("div.login-form > h2");
     private final SelenideElement nameInputInitial = $("[placeholder='Name']");
     private final SelenideElement emailInputInitial = $("[data-qa='signup-email']");
     private final SelenideElement signUpButton = $("[data-qa='signup-button']");
@@ -31,6 +32,9 @@ public class LoginPage extends BasePage {
     private final SelenideElement zipcodeInput = $("#zipcode");
     private final SelenideElement mobileNumberInput = $("#mobile_number");
     private final SelenideElement createAccountButton = $("[data-qa='create-account']");
+    private final SelenideElement loginEmailInput = $("[data-qa='login-email']");
+    private final SelenideElement loginPasswordInput = $("[data-qa='login-password']");
+    private final SelenideElement loginButton = $("[data-qa='login-button']");
 
     // =================================================================
     // PUBLIC METHODS
@@ -39,6 +43,11 @@ public class LoginPage extends BasePage {
     @Step("Receive the text 'New User Signup'")
     public String getNewUserSignupText() {
         return getElementText(newUserSignUp);
+    }
+
+    @Step("Receive the text 'Login to your account'")
+    public String getLoginToYourAccountText() {
+        return getElementText(loginToYourAccount);
     }
 
     @Step("Fill in the initial user's information for signup")
@@ -61,6 +70,14 @@ public class LoginPage extends BasePage {
         scrollToElement(createAccountButton);
         clickElement(createAccountButton);
         return new AccountCreatedPage();
+    }
+
+    @Step("Login as user with email: {email}")
+    public MainPage loginAs(String email, String password) {
+        setInputValue(loginEmailInput, email);
+        setInputValue(loginPasswordInput, password);
+        clickElement(loginButton);
+        return new MainPage();
     }
 
     // =================================================================

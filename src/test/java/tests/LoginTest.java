@@ -8,6 +8,7 @@ import pages.AccountDeletedPage;
 import pages.LoginPage;
 import pages.MainPage;
 import tests.base.BaseTest;
+import verifications.MainPageVerifications;
 
 import static com.codeborne.selenide.Selenide.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,10 +20,10 @@ public class LoginTest extends BaseTest {
     public void registerUser() {
         User user = new User();
         MainPage mainPage = new MainPage();
+        MainPageVerifications mainPageVerifications = new MainPageVerifications();
 
-        // 1. Verify Home Page Is Visible
-        assertThat(mainPage.getHomePageHighlightedText()).isEqualTo("Home");
-        assertThat(title()).isEqualTo("Automation Exercise");
+        // 1. Verify that home page is visible successfully
+        mainPageVerifications.verifyHomePageIsVisible(mainPage);
 
         LoginPage loginPage = mainPage.clickLoginButton();
 
@@ -50,5 +51,28 @@ public class LoginTest extends BaseTest {
 
         // 7. Click the 'Continue' button
         accountDeletedPage.clickContinue();
+    }
+
+    @Test
+    @Description("Login User With Correct Email And Password")
+    public void loginUserWithCorrectEmailAndPassword() {
+        User defaultUser = User.getPredefinedUser();
+        MainPage mainPage = new MainPage();
+        MainPageVerifications mainPageVerifications = new MainPageVerifications();
+
+        // 1. Verify that home page is visible successfully
+        mainPageVerifications.verifyHomePageIsVisible(mainPage);
+
+        LoginPage loginPage = mainPage.clickLoginButton();
+
+        // 2. Verify 'Login to your account' is visible
+        assertThat(loginPage.getLoginToYourAccountText()).isEqualTo("Login to your account");
+
+        mainPage = loginPage.loginAs(defaultUser.getEmail(), defaultUser.getPassword());
+
+        // 3. Verify that 'Logged in as username' is visible
+        assertThat(mainPage.getLoggedInAsText()).isEqualTo(defaultUser.getName());
+
+
     }
 }

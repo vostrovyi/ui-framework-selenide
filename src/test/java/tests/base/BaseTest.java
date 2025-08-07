@@ -4,18 +4,18 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class BaseTest {
     protected static final String BASE_URL = "http://automationexercise.com";
 
     @BeforeSuite(alwaysRun = true)
-    @Step("Starting out with Allure and a Browser")
+    @Step("Starting out with allure and a browser")
     public void initialSetup() {
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
@@ -34,8 +34,15 @@ public class BaseTest {
         open(BASE_URL);
     }
 
+    @AfterMethod(alwaysRun = true)
+    @Step("Clear browser cookies and local storage")
+    public void cleanUp() {
+        clearBrowserCookies();
+        clearBrowserLocalStorage();
+    }
+
     @AfterSuite(alwaysRun = true)
-    @Step("Close Browser")
+    @Step("Close browser")
     public void tearDown() {
         closeWebDriver();
     }
