@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import data.User;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class LoginPage extends BasePage {
@@ -35,6 +36,8 @@ public class LoginPage extends BasePage {
     private final SelenideElement loginEmailInput = $("[data-qa='login-email']");
     private final SelenideElement loginPasswordInput = $("[data-qa='login-password']");
     private final SelenideElement loginButton = $("[data-qa='login-button']");
+    private final SelenideElement loginErrorMessage = $("p[style='color: red;']");
+    private final SelenideElement signupErrorMessage = $("form[action='/signup'] p"); // Помилка при реєстрації
 
     // =================================================================
     // PUBLIC METHODS
@@ -80,6 +83,22 @@ public class LoginPage extends BasePage {
         return new MainPage();
     }
 
+    @Step("Get login error message")
+    public String getLoginErrorMessage() {
+        return loginErrorMessage.shouldBe(visible).getText();
+    }
+
+    @Step("Select marketing options checkboxes")
+    private void selectMarketingOptions() {
+        clickElement(newsletterCheckbox);
+        clickElement(specialOffersCheckbox);
+    }
+
+    @Step("Get signup error message")
+    public String getSignupErrorMessage() {
+        return signupErrorMessage.shouldBe(visible).getText();
+    }
+
     // =================================================================
     // PRIVATE HELPER METHODS
     // =================================================================
@@ -110,11 +129,5 @@ public class LoginPage extends BasePage {
         setInputValue(cityInput, user.getCity());
         setInputValue(zipcodeInput, user.getZipcode());
         setInputValue(mobileNumberInput, user.getMobileNumber());
-    }
-
-    @Step("Select marketing options checkboxes")
-    private void selectMarketingOptions() {
-        clickElement(newsletterCheckbox);
-        clickElement(specialOffersCheckbox);
     }
 }
