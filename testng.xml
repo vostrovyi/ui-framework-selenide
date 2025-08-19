@@ -12,4 +12,17 @@
             <class name="tests.LoginTest"/>
         </classes>
     </test>
+
+    <test name="Main Page Features Test">
+        <classes>
+            <class name="tests.MainPageFeaturesTest"/>
+        </classes>
+    </test>
+
+    <test name="Products Test">
+        <classes>
+            <class name="tests.ProductsTest"/>
+        </classes>
+    </test>
+
 </suite>

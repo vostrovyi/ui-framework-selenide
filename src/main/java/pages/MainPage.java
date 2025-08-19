@@ -13,6 +13,7 @@ public class MainPage extends BasePage {
     private final SelenideElement loggedInAsText = $("li:has(i.fa-user) b");
     private final SelenideElement deleteAccountButton = $(byText("Delete Account"));
     private final SelenideElement logoutButton = $(byText("Logout"));
+    private final SelenideElement contactUsButton = $("a[href='/contact_us']");
 
     @Step("Get Home page highlighted text")
     public String getHomePageHighlightedText() {
@@ -40,5 +41,11 @@ public class MainPage extends BasePage {
     public LoginPage clickLogoutButton() {
         clickElement(logoutButton);
         return new LoginPage();
+    }
+
+    @Step("Click on Contact Us button")
+    public ContactUsPage clickContactUsButton() {
+        clickElement(contactUsButton);
+        return new ContactUsPage();
     }
 }

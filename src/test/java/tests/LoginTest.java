@@ -4,10 +4,7 @@ import data.User;
 import data.UserDataFactory;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
-import pages.AccountCreatedPage;
-import pages.AccountDeletedPage;
-import pages.LoginPage;
-import pages.MainPage;
+import pages.*;
 import tests.base.BaseTest;
 import verifications.MainPageVerifications;
 
@@ -15,12 +12,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginTest extends BaseTest {
 
+    private MainPage mainPage = new MainPage();
+    private final MainPageVerifications mainPageVerifications = new MainPageVerifications();
+
     @Test
     @Description("Register New User")
     public void registerUser() {
         User user = UserDataFactory.createRandomUser();
-        MainPage mainPage = new MainPage();
-        MainPageVerifications mainPageVerifications = new MainPageVerifications();
 
         // 1. Verify that home page is visible successfully
         mainPageVerifications.verifyHomePageIsVisible(mainPage);
@@ -65,8 +63,6 @@ public class LoginTest extends BaseTest {
     @Description("Login User With Correct Email And Password")
     public void loginUserWithCorrectEmailAndPassword() {
         User user = UserDataFactory.getPredefinedUser();
-        MainPage mainPage = new MainPage();
-        MainPageVerifications mainPageVerifications = new MainPageVerifications();
 
         mainPageVerifications.verifyHomePageIsVisible(mainPage);
         LoginPage loginPage = mainPage.clickLoginButton();
@@ -86,8 +82,6 @@ public class LoginTest extends BaseTest {
     @Description("Login User with incorrect email and password")
     public void loginUserWithIncorrectEmailAndPassword() {
         User user = UserDataFactory.getUserWithInvalidPassword();
-        MainPage mainPage = new MainPage();
-        MainPageVerifications mainPageVerifications = new MainPageVerifications();
 
         mainPageVerifications.verifyHomePageIsVisible(mainPage);
         LoginPage loginPage = mainPage.clickLoginButton();
@@ -107,7 +101,8 @@ public class LoginTest extends BaseTest {
     @Description("Logout User")
     public void logoutUser() {
         User user = UserDataFactory.getPredefinedUser();
-        MainPage mainPage = new MainPage();
+
+        mainPageVerifications.verifyHomePageIsVisible(mainPage);
         MainPageVerifications mainPageVerifications = new MainPageVerifications();
 
         mainPageVerifications.verifyHomePageIsVisible(mainPage);
@@ -123,9 +118,10 @@ public class LoginTest extends BaseTest {
                 .getLoggedInAsText())
                 .isEqualTo(user.getName());
 
-        mainPage.clickLogoutButton();
+        // Save the new object of the page you went to AFTER the logout
+        LoginPage finalLoginPage = mainPage.clickLogoutButton();
 
-        assertThat(loginPage
+        assertThat(finalLoginPage
                 .getLoginToYourAccountText())
                 .isEqualTo("Login to your account");
     }
@@ -134,8 +130,6 @@ public class LoginTest extends BaseTest {
     @Description("Register User with existing email")
     public void registerUserWithExistingEmail() {
         User user = UserDataFactory.getPredefinedUser();
-        MainPage mainPage = new MainPage();
-        MainPageVerifications mainPageVerifications = new MainPageVerifications();
 
         mainPageVerifications.verifyHomePageIsVisible(mainPage);
         LoginPage loginPage = mainPage.clickLoginButton();
