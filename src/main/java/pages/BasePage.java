@@ -6,6 +6,8 @@ import org.openqa.selenium.Keys;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Selenide.title;
+
 public class BasePage {
 
     protected void waitForVisible(SelenideElement element) {
@@ -24,6 +26,9 @@ public class BasePage {
     protected String getElementText(SelenideElement element) {
         return element.shouldBe(Condition.visible).getText();
     }
+
+    public String getPageTitle() {
+        return title(); }
 
     protected void shouldHaveText(SelenideElement element, String text) {
         element.shouldHave(Condition.text(text));

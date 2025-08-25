@@ -102,7 +102,6 @@ public class LoginTest extends BaseTest {
     public void logoutUser() {
         User user = UserDataFactory.getPredefinedUser();
 
-        mainPageVerifications.verifyHomePageIsVisible(mainPage);
         MainPageVerifications mainPageVerifications = new MainPageVerifications();
 
         mainPageVerifications.verifyHomePageIsVisible(mainPage);

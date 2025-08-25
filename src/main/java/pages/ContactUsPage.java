@@ -21,9 +21,10 @@ public class ContactUsPage extends BasePage {
     private final SelenideElement chooseFile = $("[type='file']");
     private final SelenideElement submitButton = $("[name='submit']");
     private final SelenideElement successMessage = $("div.status.alert.alert-success");
+    private final SelenideElement homeButton = $(".fa-home");
 
     @Step("Get 'GET IN TOUCH' title text")
-    public String getTitleText() {
+    public String getContactUsHeaderText() {
         return getElementText(titleGetInTouch);
     }
 
@@ -36,9 +37,10 @@ public class ContactUsPage extends BasePage {
         return this;
     }
 
+    @Step()
     public ContactUsPage uploadFile(File file) {
         Allure.step("Upload file: " + file.getName());
-        chooseFile.uploadFile(file);
+        uploadFile(chooseFile, file);
         return this;
     }
 
@@ -52,5 +54,11 @@ public class ContactUsPage extends BasePage {
     @Step("Get success message text")
     public String getSuccessMessageText() {
         return successMessage.shouldBe(visible).getText();
+    }
+
+    @Step("Click Home button")
+    public MainPage clickHomeButton() {
+        clickElement(homeButton);
+        return new MainPage();
     }
 }

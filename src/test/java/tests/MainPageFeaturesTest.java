@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MainPageFeaturesTest extends BaseTest {
 
-    private MainPage mainPage = new MainPage();
+    private final MainPage mainPage = new MainPage();
     private final MainPageVerifications mainPageVerifications = new MainPageVerifications();
 
     @Test
@@ -26,7 +26,7 @@ public class MainPageFeaturesTest extends BaseTest {
         ContactUsPage contactUsPage = mainPage.clickContactUsButton();
 
         assertThat(contactUsPage
-                .getTitleText())
+                .getContactUsHeaderText())
                 .isEqualTo("GET IN TOUCH");
 
         contactUsPage.fillContactForm(user, "Tes Subject", "Test Message")
@@ -36,17 +36,44 @@ public class MainPageFeaturesTest extends BaseTest {
         assertThat(contactUsPage
                 .getSuccessMessageText())
                 .isEqualTo("Success! Your details have been submitted successfully.");
+
+        MainPage finalMainPage = contactUsPage.clickHomeButton();
+        mainPageVerifications.verifyHomePageIsVisible(finalMainPage);
     }
 
     @Test
     @Description("Verify Test Cases Page")
     public void verifyTestCasesPage() {
 
+        mainPageVerifications.verifyHomePageIsVisible(mainPage);
+        TestCasesPage testCasesPage = mainPage.clickTestCasesButton();
+
+        assertThat(testCasesPage
+                .getTestCasesHeaderText())
+                .isEqualToIgnoringCase("Test Cases");
+
+        assertThat(testCasesPage
+                .getPageTitle())
+                .isEqualTo("Automation Practice Website for UI Testing - Test Cases");
     }
 
-//    @Test
-//    @Description("Verify Subscription in home page")
-//    public void verifySubscriptionInHomePage() {
-//
-//    }
+    @Test
+    @Description("Verify Subscription in home page")
+    public void verifySubscriptionInHomePage() {
+        User user = UserDataFactory.getPredefinedUser();
+
+        mainPageVerifications.verifyHomePageIsVisible(mainPage);
+
+        assertThat(mainPage
+                .scrollToSubscription()
+                .getSubscriptionText())
+                .isEqualToIgnoringCase("Subscription");
+
+
+        assertThat(mainPage
+                .enterEmail(user.getEmail())
+                .clickSubscribeButton()
+                .getSuccessMessage())
+                .isEqualTo("You have been successfully subscribed!");
+    }
 }
