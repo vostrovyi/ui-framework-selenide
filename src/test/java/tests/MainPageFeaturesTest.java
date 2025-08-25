@@ -44,7 +44,6 @@ public class MainPageFeaturesTest extends BaseTest {
     @Test
     @Description("Verify Test Cases Page")
     public void verifyTestCasesPage() {
-
         mainPageVerifications.verifyHomePageIsVisible(mainPage);
         TestCasesPage testCasesPage = mainPage.clickTestCasesButton();
 
@@ -68,7 +67,6 @@ public class MainPageFeaturesTest extends BaseTest {
                 .scrollToSubscription()
                 .getSubscriptionText())
                 .isEqualToIgnoringCase("Subscription");
-
 
         assertThat(mainPage
                 .enterEmail(user.getEmail())

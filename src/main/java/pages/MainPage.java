@@ -19,6 +19,7 @@ public class MainPage extends BasePage {
     private final SelenideElement emailInput = $("#susbscribe_email");
     private final SelenideElement subscribeButton = $("#subscribe");
     private final SelenideElement successMessage = $("#success-subscribe div");
+    private final SelenideElement productsButton = $("a[href='/products']");
 
     @Step("Get Home page highlighted text")
     public String getHomePageHighlightedText() {
@@ -77,12 +78,20 @@ public class MainPage extends BasePage {
         return this;
     }
 
+    @Step("Enter email")
     public MainPage enterEmail(String email) {
         setInputValue(emailInput, email);
         return this;
     }
 
+    @Step("Get success message")
     public String getSuccessMessage() {
         return getElementText(successMessage);
+    }
+
+    @Step("Click on Products button")
+    public ProductsPage clickProductsButton() {
+        clickElement(productsButton);
+        return new ProductsPage();
     }
 }
