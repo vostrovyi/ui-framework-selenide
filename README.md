@@ -11,4 +11,4 @@ mvn clean compile
 mvn clean test
 
 # results
-allure serve allure-results 
+mvn allure:serve 
