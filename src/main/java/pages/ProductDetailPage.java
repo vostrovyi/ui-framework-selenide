@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -27,12 +28,24 @@ public class ProductDetailPage extends BasePage {
     public List<String> findInvisibleDetails() {
         List<String> invisibleElements = new ArrayList<>();
 
-        if (!productName.isDisplayed()) invisibleElements.add("Product Name");
-        if (!productCategory.isDisplayed()) invisibleElements.add("Product Category");
-        if (!productPrice.isDisplayed()) invisibleElements.add("Product Price");
-        if (!productAvailability.isDisplayed()) invisibleElements.add("Product Availability");
-        if (!productCondition.isDisplayed()) invisibleElements.add("Product Condition");
-        if (!productBrand.isDisplayed()) invisibleElements.add("Product Brand");
+        Map<String, SelenideElement> elementsToCheck = Map.of( // Перейменував змінну для ясності
+                "Product Name", productName,
+                "Product Category", productCategory,
+                "Product Price", productPrice,
+                "Product Availability", productAvailability,
+                "Product Condition", productCondition,
+                "Product Brand", productBrand
+        );
+
+        for (var entry : elementsToCheck.entrySet()) {
+            String name = entry.getKey();
+            SelenideElement element = entry.getValue();
+
+            // Якщо елемент невидимий, додаємо його назву до списку
+            if (!element.isDisplayed()) {
+                invisibleElements.add(name);
+            }
+        }
 
         return invisibleElements;
     }

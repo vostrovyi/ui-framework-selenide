@@ -37,9 +37,8 @@ public class ContactUsPage extends BasePage {
         return this;
     }
 
-    @Step()
+    @Step("Upload file")
     public ContactUsPage uploadFile(File file) {
-        Allure.step("Upload file: " + file.getName());
         uploadFile(chooseFile, file);
         return this;
     }
