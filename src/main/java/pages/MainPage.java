@@ -28,7 +28,7 @@ public class MainPage extends BasePage {
 
     @Step("Click on Login button")
     public LoginPage clickLoginButton() {
-        clickElement(loginButton);
+        loginButton.click();
         return new LoginPage();
     }
 
@@ -39,31 +39,31 @@ public class MainPage extends BasePage {
 
     @Step("Click Delete Account button")
     public AccountDeletedPage clickDeleteAccountButton() {
-        clickElement(deleteAccountButton);
+        deleteAccountButton.click();
         return new AccountDeletedPage();
     }
 
     @Step("Click Logout button")
     public LoginPage clickLogoutButton() {
-        clickElement(logoutButton);
+        logoutButton.click();
         return new LoginPage();
     }
 
     @Step("Click on Contact Us button")
     public ContactUsPage clickContactUsButton() {
-        clickElement(contactUsButton);
+        contactUsButton.click();
         return new ContactUsPage();
     }
 
     @Step("Click on Test Cases button")
     public TestCasesPage clickTestCasesButton() {
-        clickElement(testCasesButton);
+        testCasesButton.click();
         return new TestCasesPage();
     }
 
     @Step("Scroll to 'SUBSCRIPTION' text")
     public MainPage scrollToSubscription() {
-        scrollToElement(subscription);
+        subscription.click();
         return this;
     }
 
@@ -74,7 +74,7 @@ public class MainPage extends BasePage {
 
     @Step("Click Subscribe button")
     public MainPage clickSubscribeButton() {
-        clickElement(subscribeButton);
+        subscribeButton.click();
         return this;
     }
 
@@ -91,7 +91,7 @@ public class MainPage extends BasePage {
 
     @Step("Click on Products button")
     public ProductsPage clickProductsButton() {
-        clickElement(productsButton);
+        productsButton.click();
         return new ProductsPage();
     }
 }

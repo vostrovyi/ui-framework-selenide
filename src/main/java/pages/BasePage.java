@@ -10,14 +10,6 @@ import static com.codeborne.selenide.Selenide.title;
 
 public class BasePage {
 
-    protected void waitForVisible(SelenideElement element) {
-        element.shouldBe(Condition.visible);
-    }
-
-    protected void clickElement(SelenideElement element) {
-        element.shouldBe(Condition.visible).click();
-    }
-
     protected void setInputValue(SelenideElement element, String value) {
         element.shouldBe(Condition.visible).clear();
         element.setValue(value);
@@ -28,7 +20,17 @@ public class BasePage {
     }
 
     public String getPageTitle() {
-        return title(); }
+        return title();
+    }
+}
+    /*
+    protected void waitForVisible(SelenideElement element) {
+        element.shouldBe(Condition.visible);
+    }
+
+    protected void clickElement(SelenideElement element) {
+        element.shouldBe(Condition.visible).click();
+    }
 
     protected void shouldHaveText(SelenideElement element, String text) {
         element.shouldHave(Condition.text(text));
@@ -49,4 +51,4 @@ public class BasePage {
     protected void pressEnter(SelenideElement element) {
         element.sendKeys(Keys.ENTER);
     }
-}
+*/

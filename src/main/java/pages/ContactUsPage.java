@@ -38,13 +38,13 @@ public class ContactUsPage extends BasePage {
 
     @Step("Upload file")
     public ContactUsPage uploadFile(File file) {
-        uploadFile(chooseFile, file);
+        chooseFile.uploadFile(file);
         return this;
     }
 
     @Step("Click on Submit button and accept alert")
     public ContactUsPage clickSubmitButton() {
-        clickElement(submitButton);
+        submitButton.click();
         switchTo().alert().accept();
         return this;
     }
@@ -56,7 +56,7 @@ public class ContactUsPage extends BasePage {
 
     @Step("Click Home button")
     public MainPage clickHomeButton() {
-        clickElement(homeButton);
+        homeButton.click();
         return new MainPage();
     }
 }

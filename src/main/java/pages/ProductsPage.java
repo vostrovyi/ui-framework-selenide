@@ -30,15 +30,15 @@ public class ProductsPage extends BasePage {
 
     @Step("Click on 'View Product' of the first product")
     public ProductDetailPage clickViewFirstProduct() {
-        scrollToElement(firstProductViewButton);
-        clickElement(firstProductViewButton);
+        firstProductViewButton.scrollTo();
+        firstProductViewButton.click();
         return new ProductDetailPage();
     }
 
     @Step("Search for a product")
     public ProductsPage searchProduct(String productName) {
         setInputValue(searchInput, productName);
-        clickElement(searchButton);
+        searchButton.click();
         return this;
     }
 

@@ -18,7 +18,7 @@ public class AccountCreatedPage extends BasePage {
 
     @Step("Click Continue button")
     public MainPage clickContinue() {
-        clickElement(continueButton);
+        continueButton.click();
         return new MainPage();
     }
 }

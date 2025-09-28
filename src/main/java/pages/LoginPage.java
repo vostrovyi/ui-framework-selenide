@@ -57,7 +57,7 @@ public class LoginPage extends BasePage {
     public LoginPage setUserData(User user) {
         setInputValue(nameInputInitial, user.getName());
         setInputValue(emailInputInitial, user.getEmail());
-        clickElement(signUpButton);
+        signUpButton.click();
         return this;
     }
 
@@ -70,8 +70,8 @@ public class LoginPage extends BasePage {
     public AccountCreatedPage fillDetailsAndCreateAccount(User user, String day, String month, String year) {
         fillRequiredCredentials(user, day, month, year);
         fillAddressDetails(user);
-        scrollToElement(createAccountButton);
-        clickElement(createAccountButton);
+        createAccountButton.scrollTo();
+        createAccountButton.click();
         return new AccountCreatedPage();
     }
 
@@ -79,7 +79,7 @@ public class LoginPage extends BasePage {
     public MainPage loginAs(String email, String password) {
         setInputValue(loginEmailInput, email);
         setInputValue(loginPasswordInput, password);
-        clickElement(loginButton);
+        loginButton.click();
         return new MainPage();
     }
 
@@ -90,8 +90,8 @@ public class LoginPage extends BasePage {
 
     @Step("Select marketing options checkboxes")
     private void selectMarketingOptions() {
-        clickElement(newsletterCheckbox);
-        clickElement(specialOffersCheckbox);
+        newsletterCheckbox.click();
+        specialOffersCheckbox.click();
     }
 
     @Step("Get signup error message")
@@ -105,7 +105,7 @@ public class LoginPage extends BasePage {
 
     @Step("Fill required credentials: title, password, and date of birth")
     private void fillRequiredCredentials(User user, String day, String month, String year) {
-        clickElement(titleMrRadio);
+        titleMrRadio.click();
         setInputValue(passwordInput, user.getPassword());
         daysSelect.selectOption(day);
         monthsSelect.selectOption(month);
