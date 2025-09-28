@@ -2,7 +2,6 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import data.User;
-import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 
 import java.io.File;

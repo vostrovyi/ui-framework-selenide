@@ -4,7 +4,7 @@
 
     <listeners>
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
-        <listener class-name="listeners.Listener"/>
+        <listener class-name="listeners.AllureFailureListener"/>
     </listeners>
 
     <test name="Login Tests">

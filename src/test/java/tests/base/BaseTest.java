@@ -4,10 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -23,9 +20,7 @@ public class BaseTest {
         Configuration.timeout = 8000;
 
         // Added once for the entire run
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
-                .screenshots(true)
-                .savePageSource(false));
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @BeforeMethod
