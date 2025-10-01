@@ -16,11 +16,9 @@ public class AllureFailureListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        if (WebDriverRunner.hasWebDriverStarted()) {
             saveScreenshot();
             savePageSource();
             saveBrowserConsoleLogs();
-        }
     }
 
     @Attachment(value = "Screenshot on failure", type = "image/png")
